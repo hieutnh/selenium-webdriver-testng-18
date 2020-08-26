@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class NewTest {
+public class Topic_01_eviroment {
 	WebDriver driver;
 
 	@BeforeClass
