@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 
-public class Topic_02_xpath {
+public class Topic_02_locator {
 	WebDriver driver;
 
 	@BeforeClass
