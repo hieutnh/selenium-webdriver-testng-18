@@ -41,7 +41,7 @@ public class Topic_03_Xpath {
 		driver.findElement(By.id("email")).sendKeys("12332.@213123.2131");
 		driver.findElement(By.id("pass")).sendKeys("123456");
 		driver.findElement(By.id("send2")).click();
-		String emailerrormessage = driver.findElement(By.xpath("//div[@class='content fieldset']//input[@id='email']")).getText();
+		String emailerrormessage = driver.findElement(By.id("advice-validate-email-email")).getText();
 		Assert.assertEquals(emailerrormessage, "Please enter a valid email address. For example johndoe@domain.com.");
 	
 	}
@@ -52,7 +52,7 @@ public class Topic_03_Xpath {
 		driver.findElement(By.id("email")).sendKeys("hieutnh209@gmail.com");
 		driver.findElement(By.id("pass")).sendKeys("123");
 		driver.findElement(By.id("send2")).click();
-		String passworderrormessage = driver.findElement(By.xpath("//div[@class='content fieldset']//input[@id='pass']")).getText();
+		String passworderrormessage = driver.findElement(By.xpath("//div[@id='advice-validate-password-pass']")).getText();
 		Assert.assertEquals(passworderrormessage,"Please enter 6 or more characters without leading or trailing spaces.");
 	}
 	@Test
