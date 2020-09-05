@@ -80,49 +80,43 @@ public class Topic_03_Xpath {
 		String HelloAuto = driver.findElement(By.xpath("//p[@class='hello']/strong")).getText();
 		Assert.assertEquals(HelloAuto,"Hello, Automation Testing!");
 		
-		String Name = driver.findElement(By.xpath("//div[@class='box-content']/p[contains(.,'Automation Testing')]")).getText();
-		Assert.assertEquals(Name,"Automation Testing");
-		
-		String email = driver.findElement(By.xpath("//div[@class='box-content']/p[contains(.,'automation_13@gmail.com')]")).getText();
-		Assert.assertEquals(email,"automation_13@gmail.com");
-		
-		driver.findElement(By.xpath("//a[@title='Log Out']")).click();
-		
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='col-1']//div[@class='box-content']/p[contains(.,'Automation Testing')]")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='col-1']//div[@class='box-content']/p[contains(.,'automation_13@gmail.com')]")).isDisplayed());
+		driver.findElement(By.xpath("//a[contains(@class,'skip-account')]//span[@class='label']")).click();	
+		driver.findElement(By.xpath("//a[@title='Log Out']")).click();	
 	}
-	
 	@Test
 	public void TC_06_CreateAnAcount() {
 		driver.get("http://live.demoguru99.com/index.php/customer/account/login/");
 		driver.findElement(By.xpath("//div[@class='footer-container']//a[@title='My Account']")).click();
 		driver.findElement(By.xpath("//a[@class='button']")).click();
-		driver.findElement(By.id("//input[@id='firstname']")).sendKeys("Tran");
 		
-		driver.findElement(By.id("//input[@id='lastname']")).sendKeys("Hieu");
+		String firstname = "Tran";
+		String lastname = "Hieu";
+		String email2 = "hieutnh" + randomnumber() + "@gmail.com";
 		
-		driver.findElement(By.id("//input[@id='email_address']")).sendKeys("hieutnh" + randomnumber() + "@gmail.com");
-		
-		driver.findElement(By.id("//input[@id='password']")).sendKeys("123123");
-		
-		driver.findElement(By.id("//input[@id='confirmation']")).sendKeys("123123");
-		
-		driver.findElement(By.xpath("//button[@class='Register']")).click();
+		driver.findElement(By.id("firstname")).sendKeys(firstname);
+		driver.findElement(By.id("lastname")).sendKeys(lastname);
+		driver.findElement(By.id("email_address")).sendKeys(email2);
+		driver.findElement(By.id("password")).sendKeys("123123");
+		driver.findElement(By.id("confirmation")).sendKeys("123123");
+		driver.findElement(By.xpath("//button[@class='button']")).click();
 		
 		String Confirmregister2 = driver.findElement(By.xpath("//li[@class='success-msg']")).getText();
 		Assert.assertEquals(Confirmregister2,"Thank you for registering with Main Website Store.");
 	
 		String MyDashboard2 = driver.findElement(By.xpath("//div[@class='page-title']/h1")).getText();
-		Assert.assertEquals(MyDashboard2,"My Dashboard");
+		Assert.assertEquals(MyDashboard2,"MY DASHBOARD");
 		
 		String HelloAuto2 = driver.findElement(By.xpath("//p[@class='hello']/strong")).getText();
 		Assert.assertEquals(HelloAuto2,"Hello, Tran Hieu!");
 		
-		String Name2 = driver.findElement(By.xpath("//div[@class='box-content']/p[contains(.,'Tran Hieu')]")).getText();
-		Assert.assertEquals(Name2,"Tran Hieu");
+		String imformationemail = driver.findElement(By.xpath("//div[@class='col-1']//div[@class='box-content']//p")).getText();
+		Assert.assertTrue(imformationemail.contains(firstname + " " + lastname));
+		Assert.assertTrue(imformationemail.contains(email2));
 		
-		String email2 = driver.findElement(By.xpath("//div[@class='box-content']/p[contains(.,'hieutnh1@gmail.com')]")).getText();
-		Assert.assertEquals(email2,"hieutnh1@gmail.com");
-		
-		driver.findElement(By.xpath("//a[@title='Log Out']")).click();
+		driver.findElement(By.xpath("//a[contains(@class,'skip-account')]//span[@class='label']")).click();	
+		driver.findElement(By.xpath("//a[@title='Log Out']")).click();	
 	}
 	
 	public int randomnumber() {

@@ -4,5 +4,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
 	<classpathentry kind="lib" path="libraries/selenium-server-standalone-2.53.1.jar"/>
+	<classpathentry kind="lib" path="Driver Browser/jdk-8u211-windows-x64.exe"/>
+	<classpathentry kind="lib" path="Driver Browser/msedgedriver.exe"/>
+	<classpathentry kind="lib" path="Driver Browser/chromedriver.exe"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
