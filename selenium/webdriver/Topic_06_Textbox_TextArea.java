@@ -127,7 +127,7 @@ public class Topic_06_Textbox_TextArea {
 		driver.findElement(By.xpath("//input[@name='cusid']")).sendKeys(CustomerID);
 		driver.findElement(By.xpath("//input[@name='AccSubmit']")).click();
 		
-		Assert.assertEquals(driver.findElement(By.xpath("//input[@name='name']")).getText(), customerName);	
+		Assert.assertEquals(driver.findElement(By.name("name")).getAttribute("value"), customerName);	
 		Assert.assertEquals(driver.findElement(By.xpath("//textarea[@name='addr']")).getText(), addressinput);	
 
 		
