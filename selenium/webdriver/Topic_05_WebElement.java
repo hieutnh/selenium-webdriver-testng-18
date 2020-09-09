@@ -47,7 +47,7 @@ public class Topic_05_WebElement {
 		if(driver.findElement(AgeUnderCheckbox).isDisplayed()) {
 			driver.findElement(AgeUnderCheckbox).click();	
 		}
-			
+	
 	}
 
 	@Test
