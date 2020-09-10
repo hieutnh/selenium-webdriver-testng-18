@@ -30,7 +30,7 @@ public class Topic_07_Dropdown_Custom {
 
 	@BeforeClass
 	public void beforeClass() {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\hieut\\git\\selenium-webdriver-testng-18\\Driver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Administrator\\git\\selenium-webdriver-testng-18\\DriverChrome\\chromedriver.exe");
 		driver = new ChromeDriver();
 		explicitWait = new WebDriverWait(driver, 30);
 		jsExecutor = (JavascriptExecutor) driver;
@@ -42,10 +42,19 @@ public class Topic_07_Dropdown_Custom {
 	@Test
 	public void TC_01_JQUERY() {
 		driver.get("http://jqueryui.com/resources/demos/selectmenu/default.html");
-		selectItemInDropDown("http://jqueryui.com/resources/demos/selectmenu/default.html", "//li[@class='ui-menu-item']/div", "5");
-		selectItemInDropDown("http://jqueryui.com/resources/demos/selectmenu/default.html", "//li[@class='ui-menu-item']/div", "10");
-		selectItemInDropDown("http://jqueryui.com/resources/demos/selectmenu/default.html", "//li[@class='ui-menu-item']/div", "15");
-		selectItemInDropDown("http://jqueryui.com/resources/demos/selectmenu/default.html", "//li[@class='ui-menu-item']/div", "19");
+
+		selectItemInDropDown("//span[@id='number-button']", "//li[@class='ui-menu-item']/div", "5");
+		sleepInSecond(1);
+		Assert.assertTrue(driver.findElement(By.xpath("//span[@id='number-button']/span[@class='ui-selectmenu-text' and text()='5']")).isDisplayed());
+		selectItemInDropDown("//span[@id='number-button']", "//li[@class='ui-menu-item']/div", "10");
+		sleepInSecond(1);
+		Assert.assertTrue(driver.findElement(By.xpath("//span[@id='number-button']/span[@class='ui-selectmenu-text' and text()='10']")).isDisplayed());
+		selectItemInDropDown("//span[@id='number-button']", "//li[@class='ui-menu-item']/div", "15");
+		sleepInSecond(1);
+		Assert.assertTrue(driver.findElement(By.xpath("//span[@id='number-button']/span[@class='ui-selectmenu-text' and text()='15']")).isDisplayed());
+		selectItemInDropDown("//span[@id='number-button']", "//li[@class='ui-menu-item']/div", "19");
+		sleepInSecond(1);
+		Assert.assertTrue(driver.findElement(By.xpath("//span[@id='number-button']/span[@class='ui-selectmenu-text' and text()='19']")).isDisplayed());
 
 
 	}
@@ -81,6 +90,8 @@ public class Topic_07_Dropdown_Custom {
 			}
 		}	
 	}
+	
+	
 	
 	public String getHidenText(String csslocator) {
 		return (String) jsExecutor.executeScript("document.querySelector(\"" + csslocator + "\").text");
