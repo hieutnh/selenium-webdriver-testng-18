@@ -33,7 +33,7 @@ public class Topic_07_Dropdown_Default1 {
 		email = "testthoima" + getRanDom() + "@gmail.com";
 		pass = "123456";
 	}
-
+// chỉ sử dụng default dropdown cho thẻ option, các thẻ khác sử dụng custom
 	@Test
 	public void TC_01_HTML_Dropdown() {
 
