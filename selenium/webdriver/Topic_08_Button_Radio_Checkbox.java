@@ -108,11 +108,13 @@ public class Topic_08_Button_Radio_Checkbox {
 	public void afterClass() {
 		driver.quit();
 	}
-
+	
+	//hàm trick cho mất disable button (TC_02)
 	public void removeAttribute(WebElement element) {
 		jsExecutor.executeScript("arguments[0].removeAttribute('disabled')", element);
 	}
-
+	
+	//hàm cho checkbox custom
 	public void clickByJavascript(WebElement element) {
 		jsExecutor.executeScript("arguments[0].click()", element);
 	}
