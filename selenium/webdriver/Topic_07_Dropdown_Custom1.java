@@ -34,8 +34,7 @@ public class Topic_07_Dropdown_Custom1 {
 
 	@BeforeClass
 	public void beforeClass() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\hieut\\git\\selenium-webdriver-testng-18\\Driver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", ".\\Driver\\chromedriver.exe");
 		driver = new ChromeDriver();
 		explicitWait = new WebDriverWait(driver, 30);
 		jsExecutor = (JavascriptExecutor) driver;
@@ -134,7 +133,7 @@ public class Topic_07_Dropdown_Custom1 {
 
 	}
 
-	// Hàm được đùng nhiều lần
+	// Dùng cho custom dropdown
 	public void selectItemInDropDown(String parentLocator, String ItemLocator, String expectedItem) {
 		// Click vào 1 thẻ bất kì
 		driver.findElement(By.xpath(parentLocator)).click();
@@ -157,7 +156,7 @@ public class Topic_07_Dropdown_Custom1 {
 			}
 		}
 	}
-	// Dùng có advance Multi Dropdown
+	// Dùng có advance Multi Dropdown  (TC_06)
 	public void selectMultiInDropDown(String locatorMulti, String itemLocatorMulti, String[] ExpectedMulti) {
 		// Click vào 1 thẻ bất kì
 		driver.findElement(By.xpath(locatorMulti)).click();
@@ -170,17 +169,17 @@ public class Topic_07_Dropdown_Custom1 {
 		//Duyệt qua từng item
 		for (WebElement itemMulti : allItems) {
 			//Duyệt qua từng item trong mảng String[]
-			for (String itemExpected : ExpectedMulti ) {
+			for (String itemExpectedString : ExpectedMulti ) {
 			//Verify với text mình cần click
-				if(itemMulti.getText().equals(itemExpected)) {
-					// Scroll truowcs khi click
+				if(itemMulti.getText().equals(itemExpectedString)) {
+					// Scroll trước khi click
 					jsExecutor.executeScript("arguments[0].scrollIntoView(true);", itemMulti);
 					sleepInSecond(2);
 					//Click vào item cần chọn
 					jsExecutor.executeScript("arguments[0].click();", itemMulti);
 					sleepInSecond(2);
 					List <WebElement> ItemSelected = driver.findElements(By.xpath("//li[@class='selected']//input"));
-					System.out.println("Item Selected =" + ItemSelected.size());
+					System.out.println("Item Selected = " + ItemSelected.size());
 					if (ExpectedMulti.length == ItemSelected.size()) {
 						break;
 					}
@@ -189,7 +188,7 @@ public class Topic_07_Dropdown_Custom1 {
 		}
 	}
 
-	//Verify Multi Dropdown
+	//Verify Multi Dropdown (TC_06)
 	public boolean checkMultiItemSelected(String[] ItemMultiSelected) {
 		List <WebElement> ItemSelected = driver.findElements(By.xpath("//li[@class='selected']//input"));
 		//Số item được chọn = với số item
@@ -197,7 +196,7 @@ public class Topic_07_Dropdown_Custom1 {
 		
 		//gettext trong dropdown
 		String allItemSelectedText = driver.findElement(By.xpath("//button[@class='ms-choice']/span")).getText();
-		System.out.println("Text đã chọn =" + allItemSelectedText);
+		System.out.println("Text is selected =" + allItemSelectedText);
 		
 		if (numberItemSelected <= 3 && numberItemSelected > 0) {
 			for (String item : ItemMultiSelected) {
@@ -221,7 +220,9 @@ public class Topic_07_Dropdown_Custom1 {
 		return (String) jsExecutor.executeScript("return document.querySelector(\"" + csslocator + "\").textContent");
 	}
 
-	// ("return document.querySelector(\"" + csslocator + "\").textContent");
+
+	
+	//	***chỉ sử dụng default dropdown cho thẻ option, các thẻ khác sử dụng custom
 
 	public void sleepInSecond(long time) {
 		try {

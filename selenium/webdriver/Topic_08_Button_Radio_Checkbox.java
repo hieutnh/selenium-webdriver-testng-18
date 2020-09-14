@@ -67,7 +67,7 @@ public class Topic_08_Button_Radio_Checkbox {
 
 	}
 
-	// chỉ sử dụng default checkbox cho thẻ input, các thẻ khác sử dụng custom
+	// ***chỉ sử dụng default checkbox cho thẻ input, các thẻ khác sử dụng custom
 
 	public void TC_02_Checkbox() {
 		driver.get("https://demos.telerik.com/kendo-ui/checkbox/index");
@@ -114,7 +114,7 @@ public class Topic_08_Button_Radio_Checkbox {
 		jsExecutor.executeScript("arguments[0].removeAttribute('disabled')", element);
 	}
 	
-	//hàm cho checkbox custom
+	//hàm cho checkbox custom (TC_03)
 	public void clickByJavascript(WebElement element) {
 		jsExecutor.executeScript("arguments[0].click()", element);
 	}
