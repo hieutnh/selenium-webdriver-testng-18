@@ -80,7 +80,7 @@ public class Topic_07_Dropdown_Custom1 {
 
 	}
 
-	
+	@Test
 	public void TC_04_vueJS() {
 		driver.get("https://mikerodham.github.io/vue-dropdowns/");
 		selectItemInDropDown("//li[@class='dropdown-toggle']", "//ul[@class='dropdown-menu']/li", "First Option");
@@ -102,7 +102,7 @@ public class Topic_07_Dropdown_Custom1 {
 		Assert.assertEquals(getHidenText("#default-place li.es-visible"), "BMW");
 	}
 
-	@Test
+	
 	public void TC_06_Advance() {
 		driver.get("http://multiple-select.wenzhixin.net.cn/examples#basic.html");
 		driver.switchTo().frame(driver.findElement(By.tagName("iframe")));

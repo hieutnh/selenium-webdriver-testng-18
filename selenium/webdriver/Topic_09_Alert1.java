@@ -1,5 +1,6 @@
 package webdriver;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
@@ -8,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -15,13 +17,15 @@ import org.testng.annotations.Test;
 public class Topic_09_Alert1 {
 	WebDriver driver;
 	Alert alert;
+	
+	
+
 
 	@BeforeClass
 	public void beforeClass() {
 		System.setProperty("webdriver.chrome.driver", ".\\Driver\\chromedriver.exe");
 		driver = new ChromeDriver();
-		// driver = new FirefoxDriver();
-
+//		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 
@@ -127,7 +131,6 @@ public class Topic_09_Alert1 {
 		Assert.assertTrue(driver.findElement(By.xpath("//h3[contains(text(),'Basic Auth')]")).isDisplayed());
 		
 	}
-	
 	//biến chung cho TC_05 not link
 	public void authenticationNotLink(String linkweb) {
 		String splitling[] = linkweb.split("//");
@@ -138,16 +141,33 @@ public class Topic_09_Alert1 {
 		//[1] : link của web vd: tiki.vn
 		linkweb = splitling[0] + "//" + username + ":" + password + "@" + splitling[1];
 		driver.get(linkweb);
+		Assert.assertTrue(driver.findElement(By.xpath("//h3[contains(text(),'Basic Auth')]")).isDisplayed());
 	}
 	
-	
-	public void TC_06_Authentication_Notlink() {
-		driver.get("https://the-internet.herokuapp.com/");
-			
+	@Test
+	public void TC_06_Authentication_AutoIt() throws IOException {
+		String username = "admin";
+		String password = "admin";
+
+		//Khai báo cho AutoIT Alert
+		String rootfolder = System.getProperty("user.dir");
+		String chromeAuthen = rootfolder + "\\AutoIt-TestAlert/authen_chrome.exe";
+		String firefoxAuthen = rootfolder + "\\AutoIt-TestAlert/authen_firefox.exe";
+		String url = "https://the-internet.herokuapp.com/basic_auth";
+		
+		if (driver.toString().contains("firefox")) {
+			Runtime.getRuntime().exec(new String[] {firefoxAuthen, username, password});
+			}
+			else if (driver.toString().contains("chrome")) {
+				Runtime.getRuntime().exec(new String[] {chromeAuthen, username, password});
+			}
+		driver.get(url);
+		Assert.assertTrue(driver.findElement(By.xpath("//h3[contains(text(),'Basic Auth')]")).isDisplayed());
+		}
+
 	
 		
-	}
-	
+
 	
 	//Note : 2 case này sẽ ko hoạt động trên hàm alert.
 	//	alert.authenticateUsing(arg0);
