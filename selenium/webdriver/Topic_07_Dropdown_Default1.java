@@ -45,11 +45,13 @@ public class Topic_07_Dropdown_Default1 {
 		// select day
 		select = new Select(driver.findElement(By.xpath("//select[@name='DateOfBirthDay']")));
 		select.selectByVisibleText("1");
+		//kiểm tra xem cái dropdown có tổng bao nhiêu item
 		Assert.assertEquals(select.getOptions().size(), 32);
 
 		// select month
 		select = new Select(driver.findElement(By.xpath("//select[@name='DateOfBirthMonth']")));
 		select.selectByVisibleText("May");
+		//kiểm tra xem cái dropdown có tổng bao nhiêu item
 		Assert.assertEquals(select.getOptions().size(), 13);
 
 		// select year
@@ -78,8 +80,34 @@ public class Topic_07_Dropdown_Default1 {
 		// select year verify
 		select = new Select(driver.findElement(By.xpath("//select[@name='DateOfBirthYear']")));
 		Assert.assertEquals(select.getFirstSelectedOption().getText(), "1980");
+		
+		//Assert.assertTrue(select.isMultiple()); kiểm tra chọn nhiều phần
+	}
+	
+	@Test
+	public void TC_02_HTML_Dropdown() throws InterruptedException {
+
+		driver.get("https://automationfc.github.io/basic-form/index.html");
+		select = new Select(driver.findElement(By.xpath("//select[@id='job1']")));
+		Assert.assertFalse(select.isMultiple());
+		//get bằng visible
+		select.selectByVisibleText("Manual Testing");
+		Thread.sleep(4000);
+		Assert.assertEquals(select.getFirstSelectedOption().getText(), "Manual Testing");	
+		//get bằng value
+		select.selectByValue("desktop");
+		Thread.sleep(4000);
+		Assert.assertEquals(select.getFirstSelectedOption().getText(), "Desktop Testing");	
+		//get bằng index
+		select.selectByIndex(9);
+		Assert.assertEquals(select.getFirstSelectedOption().getText(), "Functional UI Testing");
+		Thread.sleep(4000);
+		Assert.assertEquals(select.getOptions().size(), 10);
+		
 
 	}
+	
+	
 
 	public int getRanDom() {
 		Random rand = new Random();
