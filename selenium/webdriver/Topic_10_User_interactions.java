@@ -8,9 +8,6 @@ import java.io.Reader;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import javax.swing.JViewport;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -18,7 +15,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.server.handler.FindElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -44,7 +40,8 @@ public class Topic_10_User_interactions {
 		driver.manage().window().maximize();
 
 	}
-
+	
+	
 	public void TC_01_Hover_Mouse() {
 		driver.get("http://www.myntra.com/");
 		element = driver.findElement(By.xpath("//a[@class='desktop-main'][contains(text(),'Kids')]"));
@@ -55,14 +52,14 @@ public class Topic_10_User_interactions {
 				"Kids Home Bath");
 
 	}
-
-	public void TC_02_Hover_Mouse() {
+	
+	
+	public void TC_02_ClickAndHold() {
 		driver.get("http://jqueryui.com/resources/demos/selectable/display-grid.html");
 		List<WebElement> allItem = driver.findElements(By.xpath("//ol[@id='selectable']/li"));
 		//click chuột vào giữ
 		action.clickAndHold(allItem.get(0)).moveToElement(allItem.get(3)).release().perform();
-		List<WebElement> allItemSelected = driver
-				.findElements(By.xpath("//li[@class='ui-state-default ui-selectee ui-selected']"));
+		List<WebElement> allItemSelected = driver.findElements(By.xpath("//li[@class='ui-state-default ui-selectee ui-selected']"));
 		Assert.assertEquals(allItemSelected.size(), 4);
 
 		for (WebElement displayitemSelected : allItemSelected) {
@@ -71,7 +68,7 @@ public class Topic_10_User_interactions {
 
 	}
 
-
+	
 	public void TC_03_Ctrl_And_Click() {
 		driver.get("http://jqueryui.com/resources/demos/selectable/display-grid.html");
 		List <WebElement> allItem = driver.findElements(By.xpath("//ol[@id='selectable']/li"));
@@ -89,7 +86,7 @@ public class Topic_10_User_interactions {
 		}
 	}
 
-
+	
 	public void TC_04_Double_Click() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
 		element = driver.findElement(By.xpath("//button[contains(text(),'Double click me')]"));
@@ -103,7 +100,7 @@ public class Topic_10_User_interactions {
 	}
 
 
-
+	
 	public void TC_05_Right_Click() {
 		driver.get("http://swisnl.github.io/jQuery-contextMenu/demo.html");
 		WebElement rightclick = driver.findElement(By.xpath("//span[text()='right click me']"));
@@ -129,16 +126,18 @@ public class Topic_10_User_interactions {
 		
 	}
 	
-
+	@Test
 	public void TC_06_Drag_And_Drop_HTML_Nho_Hon_5() {
 		driver.get("http://demos.telerik.com/kendo-ui/dragdrop/angular");
 		WebElement sourceCircle = driver.findElement(By.xpath("//div[@id='draggable']"));
 		WebElement targetCircle = driver.findElement(By.xpath("//div[@id='droptarget']"));
+		sleepInSecond(2);
 		action.dragAndDrop(sourceCircle, targetCircle).perform();
+		sleepInSecond(2);
 		Assert.assertEquals(targetCircle.getText(), "You did great!");
 	}
 	
-	@Test
+
 	public void TC_07_Drag_And_Drop_HTML5() throws InterruptedException, IOException {
 		driver.get("http://the-internet.herokuapp.com/drag_and_drop");
 
