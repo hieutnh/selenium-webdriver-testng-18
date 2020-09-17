@@ -1,9 +1,6 @@
 package webdriver;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import javax.swing.text.Element;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,8 +9,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-import com.sun.jna.platform.win32.OaIdl.ElemDescArg;
 
 public class Topic_12_Frame_Iframe {
 	WebDriver driver;
@@ -27,17 +22,19 @@ public class Topic_12_Frame_Iframe {
 
 	}
 	
-	public void TC_01_Fix_Popup() {
-		driver.get("https://www.zingpoll.com/");
+	public void TC_01_Iframe_Frame() {
+		driver.get("https://kyna.vn/");
+		
+		WebElement showregisterForm = driver.findElement(By.xpath("//img[@class='fancybox-image']"));
+		if (showregisterForm.isDisplayed()) {
+		Assert.assertTrue(driver.findElement(By.xpath("//img[@class='right-arr lazyloaded']")).isDisplayed());
+		sleepInSecond(2);	
+		driver.findElement(By.xpath("//a[@class='fancybox-item fancybox-close']")).click();
 		sleepInSecond(2);
-		driver.findElement(By.xpath("//a[@id='Loginform']")).click();
-		sleepInSecond(2);
-		WebElement showdialog = driver.findElement(By.xpath("//div[@class='modal-dialog modal_dialog_custom']//div[@class='row']"));
-		Assert.assertTrue(showdialog.isDisplayed());
-		sleepInSecond(2);
-		driver.findElement(By.xpath("//div[@class='modal-dialog modal_dialog_custom']//span[contains(text(),'×')]")).click();
-		sleepInSecond(2);
-		Assert.assertFalse(showdialog.isDisplayed());
+		}
+		
+		String test1 = driver.switchTo().frame(driver.findElement(By.id("u_0_1'")));
+		Assert.assertTrue(test1.isDisplayed());
 	}
 	
 	
