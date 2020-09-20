@@ -47,7 +47,7 @@ public class Topic_12_Frame_Iframe {
 		Assert.assertEquals(iframedisplay.getText(), "169K likes");
 
 		// switch to webchat
-
+		//defaultContent là quay về lại iframe lúc chưa switch
 		driver.switchTo().defaultContent();
 		sleepInSecond(2);
 		driver.switchTo().frame(driver.findElement(By.xpath("//div[@id='cs-live-chat']/iframe")));
@@ -119,6 +119,23 @@ public class Topic_12_Frame_Iframe {
 			String currentTitlePage = driver.getTitle();
 			// Kiểm tra title của page nào bằng với title của page expected thì truyền vào
 			if (currentTitlePage.equals(pagetitle)) {
+				// Thoát vòng lặp
+				break;
+			}
+		}
+	}
+	
+	// get page id
+	public void switchToWindowByID(String pageID) {
+		// Lấy ra tất cả id của window/tab đang có
+		// dùng set do chỉ lấy ra giá trị duy nhất, còn List sẽ lấy ra giá trị trùng nhau
+		Set<String> allWindows = driver.getWindowHandles();
+		// Dùng vòng lặp duyệt qua các ID
+		for (String listWindown : allWindows) {
+			// Kiểm tra title của page nào bằng với title của page expected thì truyền vào
+			if (!listWindown.equals(pageID)) {
+				// Swtich vào từng window/tab
+				driver.switchTo().window(listWindown);
 				// Thoát vòng lặp
 				break;
 			}
