@@ -126,7 +126,7 @@ public class Topic_10_User_interactions {
 		
 	}
 	
-	@Test
+
 	public void TC_06_Drag_And_Drop_HTML_Nho_Hon_5() {
 		driver.get("http://demos.telerik.com/kendo-ui/dragdrop/angular");
 		WebElement sourceCircle = driver.findElement(By.xpath("//div[@id='draggable']"));
@@ -137,7 +137,7 @@ public class Topic_10_User_interactions {
 		Assert.assertEquals(targetCircle.getText(), "You did great!");
 	}
 	
-
+	@Test
 	public void TC_07_Drag_And_Drop_HTML5() throws InterruptedException, IOException {
 		driver.get("http://the-internet.herokuapp.com/drag_and_drop");
 
@@ -145,7 +145,7 @@ public class Topic_10_User_interactions {
 		String targetCss = "#column-b";
 
 		String java_script = readFile(javascriptPath);
-
+//Inject Jquery khi web chưa có thì mở hàm này ra
 		// Inject Jquery lib to site
 		// String jqueryscript = readFile(jqueryPath);
 		// javascriptExecutor.executeScript(jqueryscript);

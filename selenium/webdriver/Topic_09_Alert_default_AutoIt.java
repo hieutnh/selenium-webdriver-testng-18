@@ -14,7 +14,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_09_Alert1 {
+public class Topic_09_Alert_default_AutoIt {
 	WebDriver driver;
 	Alert alert;
 	
@@ -151,8 +151,8 @@ public class Topic_09_Alert1 {
 
 		//Khai báo cho AutoIT Alert
 		String rootfolder = System.getProperty("user.dir");
-		String chromeAuthen = rootfolder + "\\AutoIt-TestAlert/authen_chrome.exe";
-		String firefoxAuthen = rootfolder + "\\AutoIt-TestAlert/authen_firefox.exe";
+		String chromeAuthen = rootfolder + "\\AutoIt\\authen_chrome.exe";
+		String firefoxAuthen = rootfolder + "\\AutoIt\\authen_firefox.exe";
 		String url = "https://the-internet.herokuapp.com/basic_auth";
 		
 		if (driver.toString().contains("firefox")) {
