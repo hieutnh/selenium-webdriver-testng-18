@@ -43,7 +43,7 @@ public class Topic_07_Dropdown_Custom1 {
 
 	}
 
-	
+	@Test
 	public void TC_01_JQUERY() {
 		driver.get("http://jqueryui.com/resources/demos/selectmenu/default.html");
 		selectItemInDropDown("//span[@id='number-button']", "//li[@class='ui-menu-item']/div", "5");
@@ -57,7 +57,7 @@ public class Topic_07_Dropdown_Custom1 {
 
 	}
 
-	
+	@Test
 	public void TC_02_Angular() {
 		driver.get("https://bom.to/GjUg3AR");
 		selectItemInDropDown("//ejs-dropdownlist[@id='games']//span[contains(@class, 'e-input-group')]",
@@ -68,7 +68,7 @@ public class Topic_07_Dropdown_Custom1 {
 		Assert.assertEquals(getHidenText("select[id='games_hidden'] option"), "Golf");
 	}
 
-	
+	@Test
 	public void TC_03_React() {
 		driver.get("https://react.semantic-ui.com/maximize/dropdown-example-selection/");
 		selectItemInDropDown("//div[@role='listbox']", "//div[@role='option']", "Jenny Hess");
@@ -93,7 +93,7 @@ public class Topic_07_Dropdown_Custom1 {
 						.isDisplayed());
 	}
 
-	
+	@Test
 	public void TC_05_editAble() {
 		driver.get("http://indrimuska.github.io/jquery-editable-select/");
 		sendkeydropdown("//div[@id='default-place']//input", "Audi");
@@ -102,7 +102,7 @@ public class Topic_07_Dropdown_Custom1 {
 		Assert.assertEquals(getHidenText("#default-place li.es-visible"), "BMW");
 	}
 
-	
+	@Test
 	public void TC_06_Advance() {
 		driver.get("http://multiple-select.wenzhixin.net.cn/examples#basic.html");
 		driver.switchTo().frame(driver.findElement(By.tagName("iframe")));

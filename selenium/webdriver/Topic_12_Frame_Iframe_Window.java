@@ -42,8 +42,7 @@ public class Topic_12_Frame_Iframe_Window {
 
 		driver.switchTo().frame(driver.findElement(By.xpath("//div[@class='fanpage ']//iframe")));
 		sleepInSecond(2);
-		WebElement iframedisplay = driver
-				.findElement(By.xpath("//a[text()='Kyna.vn']/parent::div/following-sibling::div"));
+		WebElement iframedisplay = driver.findElement(By.xpath("//a[text()='Kyna.vn']/parent::div/following-sibling::div"));
 		Assert.assertEquals(iframedisplay.getText(), "169K likes");
 
 		// switch to webchat

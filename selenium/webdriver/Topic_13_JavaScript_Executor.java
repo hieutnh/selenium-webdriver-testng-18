@@ -97,9 +97,8 @@ public class Topic_13_JavaScript_Executor {
 	}
 	
 	
-	//gettext (hạn chế dùng)
+	//gettext (hạn chế dùng), verify chính xác 1 text nào đó có trên current page
 	public boolean verifyTextInInnerText(WebDriver driver, String textExpected) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		String textActual = (String) jsExecutor.executeScript("return document.documentElement.innerText.match('" + textExpected + "')[0]");
 		return textActual.equals(textExpected);
 	}
@@ -145,6 +144,11 @@ public class Topic_13_JavaScript_Executor {
 	public void removeAttributeInDOM(String locator, String attributeRemove) {
 		element = driver.findElement(By.xpath(locator));
 		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');", element);
+	}
+	
+	//hàm tìm tooltip của 1 element
+	public String getHTML5ValidationMessage(WebElement element) {
+		return (String) jsExecutor.executeScript("return arguments[0].validationMessage;", element);
 	}
 
 	//hàm sleep
