@@ -23,8 +23,7 @@ public class Topic_07_Dropdown_Default1 {
 
 	@BeforeClass
 	public void beforeClass() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\hieut\\git\\selenium-webdriver-testng-18\\Driver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",".\\Driver\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
@@ -44,6 +43,7 @@ public class Topic_07_Dropdown_Default1 {
 		driver.findElement(By.xpath("//input[@id='LastName']")).sendKeys("thoima");
 		// select day
 		select = new Select(driver.findElement(By.xpath("//select[@name='DateOfBirthDay']")));
+		//hàm lấy ra giá trị tên chính xác(khuyên dùng)
 		select.selectByVisibleText("1");
 		//kiểm tra xem cái dropdown có tổng bao nhiêu item
 		Assert.assertEquals(select.getOptions().size(), 32);
@@ -63,6 +63,7 @@ public class Topic_07_Dropdown_Default1 {
 		driver.findElement(By.xpath("//input[@id='Password']")).sendKeys(pass);
 		driver.findElement(By.xpath("//input[@id='ConfirmPassword']")).sendKeys(pass);
 		driver.findElement(By.xpath("//input[@id='register-button']")).click();
+
 
 		// Verify register
 		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='result']")).getText(),"Your registration completed");
@@ -84,7 +85,7 @@ public class Topic_07_Dropdown_Default1 {
 		//Assert.assertTrue(select.isMultiple()); kiểm tra chọn nhiều phần
 	}
 	
-	@Test
+
 	public void TC_02_HTML_Dropdown() throws InterruptedException {
 
 		driver.get("https://automationfc.github.io/basic-form/index.html");
