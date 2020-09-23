@@ -52,6 +52,7 @@ public class Topic_14_Upload_Senkey_AutoIT {
 
 	public void TC_01_Upload_File() {
 		driver.get("http://blueimp.github.io/jQuery-File-Upload/");
+		//Lấy thẻ input để senkey vào
 		WebElement upLoadFile = driver.findElement(By.xpath("//input[@type='file']"));
 		// add 1 lúc nhiều file
 		upLoadFile.sendKeys(imagePath_01 + "\n" + imagePath_02 + "\n" + imagePath_03);

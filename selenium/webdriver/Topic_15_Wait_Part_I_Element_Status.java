@@ -11,11 +11,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-public class Topic_15_WebDriverWait {
+public class Topic_15_Wait_Part_I_Element_Status {
 	
 	WebDriver driver;
 	WebDriverWait explicitWait;
@@ -25,12 +25,12 @@ public class Topic_15_WebDriverWait {
 		System.setProperty("webdriver.chrome.driver", ".\\Driver\\chromedriver.exe");
 		driver = new ChromeDriver();
 		explicitWait = new WebDriverWait(driver, 10);
-		
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}
 	
 	
-	public void TC_01_Visible() {
+	public void TC_01_FindElement_Visible() {
 		driver.get("http://demo.guru99.com/");
 		
 		//***điều kiện bắt buộc của visible là phải có trên UI và có trong Dom
@@ -39,7 +39,7 @@ public class Topic_15_WebDriverWait {
 	}
 
 	
-	public void TC_02_Invisible() {
+	public void TC_02_FindElement_Invisible() {
 		driver.get("http://demo.guru99.com/");
 		
 		//***điều kiện bắt buộc của Invisible là không có trên UI
@@ -53,7 +53,7 @@ public class Topic_15_WebDriverWait {
 	}
 	
 
-	public void TC_03_Presence() {
+	public void TC_03_FindElement_Presence() {
 		driver.get("http://demo.guru99.com/");
 		//***điều kiện bắt buộc của Presence là phải có trong dom
 		
@@ -65,8 +65,8 @@ public class Topic_15_WebDriverWait {
 		explicitWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(text(),'Flash Movie Demo')]")));	
 	}
 	
-	@Test
-	public void TC_03_Staleness() {
+
+	public void TC_04_FindElement_Staleness() {
 		driver.get("http://demo.guru99.com/");
 		//***Điều kiện bắt buộc của Staleness là không có trong Dom
 		
@@ -81,8 +81,6 @@ public class Topic_15_WebDriverWait {
 		explicitWait.until(ExpectedConditions.stalenessOf(stalenessID));	
 
 	}
-	
-		
 	
 	@AfterClass
 	public void afterClass() {

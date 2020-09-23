@@ -38,6 +38,7 @@ public class Topic_08_Button_Radio_Checkbox {
 		driver.findElement(By.xpath("//input[@id='login_password']")).sendKeys("123456");
 		sleepInSecond(2);
 		// verify loginbutton enable
+		//***viết lại biến được gán loginbutton nhiều lần do trạng thái của element được page reload lại.
 		loginbutton = driver.findElement(By.xpath("//button[@class='fhs-btn-login']"));
 		Assert.assertTrue(loginbutton.isEnabled());
 		System.out.println("Login Status = " + loginbutton.isEnabled());

@@ -80,6 +80,15 @@ public class Topic_13_JavaScript_Executor {
 		
 	}
 	
+	@Test
+	public void TC_03_Element_ToolTip() throws InterruptedException {
+		driver.findElement(By.xpath("//input[@value='SUBMIT']")).click();
+		Thread.sleep(3000);
+		String nameMessage = getHTML5ValidationMessage(driver.findElement(By.xpath("//input[@id='fname']")));
+		Assert.assertEquals("Please fill out this field.", nameMessage);
+		System.out.println("Text verify : " + nameMessage);
+	}
+	
 
 	@AfterClass
 	public void afterClass() {
