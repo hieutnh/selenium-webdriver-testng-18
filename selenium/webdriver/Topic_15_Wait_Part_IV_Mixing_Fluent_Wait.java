@@ -53,11 +53,11 @@ public class Topic_15_Wait_Part_IV_Mixing_Fluent_Wait {
 	public void TC_02_Loading() {
 		driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
 		driver.findElement(By.xpath("//button[contains(text(),'Start')]")).click();
-		WebElement waitloading = driver.findElement(By.xpath("//div[@id='loading']//img"));
+		WebElement waitloading = driver.findElement(By.xpath("//div[h4]"));
 		fluentelement = new FluentWait<WebElement>(waitloading);
 		//Tổng thời gian chờ 
 		fluentelement.withTimeout(8, TimeUnit.SECONDS)
-			//Tần số quết 1s 1 lần
+			//Tần số quết 1/10s 1 lần
 			.pollingEvery(100, TimeUnit.MILLISECONDS)
 			//Nếu báo lỗi exception không tìm thấy element thì bỏ qua cho chạy tiếp
 			.ignoring(NoSuchElementException.class)
@@ -76,5 +76,6 @@ public class Topic_15_Wait_Part_IV_Mixing_Fluent_Wait {
 	public void afterClass() {
 		driver.quit();
 	}
+
 
 }
