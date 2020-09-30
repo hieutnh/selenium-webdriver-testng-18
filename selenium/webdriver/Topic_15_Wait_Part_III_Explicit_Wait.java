@@ -13,12 +13,13 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 public class Topic_15_Wait_Part_III_Explicit_Wait {
-	
+
 	WebDriver driver;
 	WebDriverWait explicitWait;
 	Alert alert;
-	
+
 	String sourceFolder = System.getProperty("user.dir");
 	String imageName_01 = "songoku1.jpg";
 	String imageName_02 = "songoku2.jpg";
@@ -30,7 +31,6 @@ public class Topic_15_Wait_Part_III_Explicit_Wait {
 	String imagePath_02 = sourceFolder + "\\image\\" + imageName_02;
 	String imagePath_03 = sourceFolder + "\\image\\" + imageName_03;
 
-	
 	@BeforeClass
 	public void beforeClass() {
 		System.setProperty("webdriver.chrome.driver", ".\\Driver\\chromedriver.exe");
@@ -38,7 +38,6 @@ public class Topic_15_Wait_Part_III_Explicit_Wait {
 		explicitWait = new WebDriverWait(driver, 60);
 		driver.manage().window().maximize();
 	}
-	
 
 	public void TC_01_Alert_Accept() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
@@ -51,40 +50,39 @@ public class Topic_15_Wait_Part_III_Explicit_Wait {
 		VerifyText.getText();
 		Assert.assertEquals(VerifyText.getText(), "You clicked an alert successfully");
 	}
-	
+
 	public void TC_02_Visible_Invisible() {
 		driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
 		driver.findElement(By.xpath("//button[contains(text(),'Start')]")).click();
-		//invisible sử dụng boolean
+		// invisible sử dụng boolean
 		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='loading']//img")));
-		//visible sử dụng WebElement
+		// visible sử dụng WebElement
 		WebElement waitHello = explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Hello World!')]")));
 		Assert.assertEquals(waitHello.getText(), "Hello World!");
-		
-	}
-	
 
-	//AjaxLoading là load lại 1 phần của trang khi thao tác 1 element sẽ được load lại.
+	}
+
+	// AjaxLoading là load lại 1 phần của trang khi thao tác 1 element sẽ được load lại.
 	public void TC_03_AjaxLoading() {
 		driver.get("https://demos.telerik.com/aspnet-ajax/ajaxloadingpanel/functionality/explicit-show-hide/defaultcs.aspx");
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='contentWrapper']")));
 		WebElement textnonePick = driver.findElement(By.xpath("//span[@id='ctl00_ContentPlaceholder1_Label1']"));
 		Assert.assertEquals(textnonePick.getText(), "No Selected Dates to display.");
-		
+
 		explicitWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@title='Wednesday, September 23, 2020']"))).click();
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Wednesday, September 23, 2020']")));
-		//viết lại hàm textnonePick do page bị reload.
+		// viết lại hàm textnonePick do page bị reload.
 		textnonePick = driver.findElement(By.xpath("//span[@id='ctl00_ContentPlaceholder1_Label1']"));
 		Assert.assertEquals(textnonePick.getText(), "Wednesday, September 23, 2020");
-		
+
 		explicitWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@title='Thursday, September 24, 2020']"))).click();
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Thursday, September 24, 2020']")));
-		//viết lại hàm textnonePick do page bị reload.
+		// viết lại hàm textnonePick do page bị reload.
 		textnonePick = driver.findElement(By.xpath("//span[@id='ctl00_ContentPlaceholder1_Label1']"));
 		Assert.assertEquals(textnonePick.getText(), "Wednesday, September 23, 2020\nThursday, September 24, 2020");
 
 	}
-	
+
 	@Test
 	public void TC_04_Upload_ExplicitWait() throws InterruptedException {
 		driver.get("https://gofile.io/?t=uploadFiles");
@@ -105,12 +103,12 @@ public class Topic_15_Wait_Part_III_Explicit_Wait {
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href,'songoku2.jpg')]")));
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href,'songoku3.jpg')]")));
 	}
-		
+
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
 	}
-	
+
 	// get page id
 	public void switchToWindowByID(String pageID) {
 		// Lấy ra tất cả id của window/tab đang có

@@ -52,23 +52,19 @@ public class Topic_14_Upload_Senkey_AutoIT {
 
 	public void TC_01_Upload_File() {
 		driver.get("http://blueimp.github.io/jQuery-File-Upload/");
-		//Lấy thẻ input để senkey vào
+		// Lấy thẻ input để senkey vào
 		WebElement upLoadFile = driver.findElement(By.xpath("//input[@type='file']"));
 		// add 1 lúc nhiều file
 		upLoadFile.sendKeys(imagePath_01 + "\n" + imagePath_02 + "\n" + imagePath_03);
 		sleepInSecond(2);
 
 		// verify load lên thành công
-		Assert.assertTrue(
-				driver.findElement(By.xpath("//p[@class='name' and contains(text(),'songoku1.jpg')]")).isDisplayed());
-		Assert.assertTrue(
-				driver.findElement(By.xpath("//p[@class='name' and contains(text(),'songoku2.jpg')]")).isDisplayed());
-		Assert.assertTrue(
-				driver.findElement(By.xpath("//p[@class='name' and contains(text(),'songoku3.jpg')]")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//p[@class='name' and contains(text(),'songoku1.jpg')]")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//p[@class='name' and contains(text(),'songoku2.jpg')]")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//p[@class='name' and contains(text(),'songoku3.jpg')]")).isDisplayed());
 
 		// click start cho nguyên list
-		List<WebElement> listStartUpload = driver
-				.findElements(By.xpath("//td//button[@class='btn btn-primary start']"));
+		List<WebElement> listStartUpload = driver.findElements(By.xpath("//td//button[@class='btn btn-primary start']"));
 		for (WebElement clickListStartUpload : listStartUpload) {
 			clickListStartUpload.click();
 			sleepInSecond(2);
@@ -133,8 +129,7 @@ public class Topic_14_Upload_Senkey_AutoIT {
 		Assert.assertTrue(driver.findElement(By.xpath("//p[@class='name' and contains(text(),'songoku2.jpg')]")).isDisplayed());
 
 		// click start cho nguyên list
-		List<WebElement> listStartUpload = driver
-				.findElements(By.xpath("//td//button[@class='btn btn-primary start']"));
+		List<WebElement> listStartUpload = driver.findElements(By.xpath("//td//button[@class='btn btn-primary start']"));
 		for (WebElement clickListStartUpload : listStartUpload) {
 			clickListStartUpload.click();
 			sleepInSecond(2);
@@ -171,9 +166,7 @@ public class Topic_14_Upload_Senkey_AutoIT {
 
 	// Verify image bằng JavaScript Executor
 	public boolean verifyImage(String imagelocator) {
-		boolean isImageLoaded = (Boolean) ((JavascriptExecutor) driver).executeScript(
-				"return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0",
-				driver.findElement(By.xpath(imagelocator)));
+		boolean isImageLoaded = (Boolean) ((JavascriptExecutor) driver).executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", driver.findElement(By.xpath(imagelocator)));
 		return isImageLoaded;
 	}
 

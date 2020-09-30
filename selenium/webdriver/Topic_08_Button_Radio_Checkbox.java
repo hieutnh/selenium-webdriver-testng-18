@@ -38,7 +38,7 @@ public class Topic_08_Button_Radio_Checkbox {
 		driver.findElement(By.xpath("//input[@id='login_password']")).sendKeys("123456");
 		sleepInSecond(2);
 		// verify loginbutton enable
-		//***viết lại biến được gán loginbutton nhiều lần do trạng thái của element được page reload lại.
+		// ***viết lại biến được gán loginbutton nhiều lần do trạng thái của element được page reload lại.
 		loginbutton = driver.findElement(By.xpath("//button[@class='fhs-btn-login']"));
 		Assert.assertTrue(loginbutton.isEnabled());
 		System.out.println("Login Status = " + loginbutton.isEnabled());
@@ -56,14 +56,9 @@ public class Topic_08_Button_Radio_Checkbox {
 		removeAttribute(loginbutton);
 		sleepInSecond(2);
 		driver.findElement(By.xpath("//button[@class='fhs-btn-login']")).click();
-		String errormessage1 = driver
-				.findElement(By.xpath("//div[@class='fhs-input-box checked-error']//div[@class='fhs-input-alert']"))
-				.getText();
+		String errormessage1 = driver.findElement(By.xpath("//div[@class='fhs-input-box checked-error']//div[@class='fhs-input-alert']")).getText();
 		Assert.assertEquals(errormessage1, "Thông tin này không thể để trống");
-		String errormessage2 = driver
-				.findElement(By.xpath(
-						"//div[@class='fhs-input-box fhs-input-display checked-error']//div[@class='fhs-input-alert']"))
-				.getText();
+		String errormessage2 = driver.findElement(By.xpath("//div[@class='fhs-input-box fhs-input-display checked-error']//div[@class='fhs-input-alert']")).getText();
 		Assert.assertEquals(errormessage2, "Thông tin này không thể để trống");
 
 	}
@@ -92,7 +87,6 @@ public class Topic_08_Button_Radio_Checkbox {
 
 	}
 
-
 	@Test
 	public void TC_03_Checkbox_Custom() {
 		driver.get("https://material.angular.io/components/radio/examples");
@@ -100,22 +94,20 @@ public class Topic_08_Button_Radio_Checkbox {
 		clickByJavascript(clickCheckboxCustom);
 		sleepInSecond(1);
 		Assert.assertTrue(clickCheckboxCustom.isSelected());
-		
 
 	}
-
 
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
 	}
-	
-	//hàm trick cho mất disable button (TC_02)
+
+	// hàm trick cho mất disable button (TC_02)
 	public void removeAttribute(WebElement element) {
 		jsExecutor.executeScript("arguments[0].removeAttribute('disabled')", element);
 	}
-	
-	//hàm cho checkbox custom (TC_03)
+
+	// hàm cho checkbox custom (TC_03)
 	public void clickByJavascript(WebElement element) {
 		jsExecutor.executeScript("arguments[0].click()", element);
 	}

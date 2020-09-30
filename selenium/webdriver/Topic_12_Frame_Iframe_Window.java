@@ -1,6 +1,5 @@
 package webdriver;
 
-import java.awt.RenderingHints.Key;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -10,7 +9,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.server.handler.SendKeys;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -19,6 +17,7 @@ import org.testng.annotations.Test;
 public class Topic_12_Frame_Iframe_Window {
 	WebDriver driver;
 	JavascriptExecutor jvExecutor;
+
 	@BeforeClass
 	public void beforeClass() {
 		System.setProperty("webdriver.chrome.driver", ".\\Driver\\chromedriver.exe");
@@ -46,7 +45,7 @@ public class Topic_12_Frame_Iframe_Window {
 		Assert.assertEquals(iframedisplay.getText(), "169K likes");
 
 		// switch to webchat
-		//defaultContent là quay về lại iframe lúc chưa switch
+		// defaultContent là quay về lại iframe lúc chưa switch
 		driver.switchTo().defaultContent();
 		sleepInSecond(2);
 		driver.switchTo().frame(driver.findElement(By.xpath("//div[@id='cs-live-chat']/iframe")));
@@ -69,34 +68,30 @@ public class Topic_12_Frame_Iframe_Window {
 	@Test
 	public void TC_02_Window_Tab() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
-		//Lấy ra id của page đang đứng
+		// Lấy ra id của page đang đứng
 		String parentId = driver.getWindowHandle();
-		
-		
+
 		clickJvscript("//a[contains(text(),'GOOGLE')]");
-		//Switch qua google
+		// Switch qua google
 		switchToWindowByTitle("Google");
 		Assert.assertEquals(driver.getTitle(), "Google");
-		
-		//Switch lại thằng cha
+
+		// Switch lại thằng cha
 		switchToWindowByTitle("SELENIUM WEBDRIVER FORM DEMO");
 		clickJvscript("//a[contains(text(),'FACEBOOK')]");
-		//switch qua facebook
+		// switch qua facebook
 		switchToWindowByTitle("Facebook - Đăng nhập hoặc đăng ký");
 		Assert.assertEquals(driver.getTitle(), "Facebook - Đăng nhập hoặc đăng ký");
-		
-		//Switch lại thằng cha
+
+		// Switch lại thằng cha
 		switchToWindowByTitle("SELENIUM WEBDRIVER FORM DEMO");
 		clickJvscript("//a[contains(text(),'TIKI')]");
-		//switch qua tiki
+		// switch qua tiki
 		switchToWindowByTitle("Mua Hàng Trực Tuyến Uy Tín với Giá Rẻ Hơn tại Tiki.vn");
 		Assert.assertEquals(driver.getTitle(), "Mua Hàng Trực Tuyến Uy Tín với Giá Rẻ Hơn tại Tiki.vn");
-		
+
 		closeAllWindow(parentId);
 		Assert.assertEquals(driver.getTitle(), "SELENIUM WEBDRIVER FORM DEMO");
-		
-		
-		
 
 	}
 
@@ -123,7 +118,7 @@ public class Topic_12_Frame_Iframe_Window {
 			}
 		}
 	}
-	
+
 	// get page id
 	public void switchToWindowByID(String pageID) {
 		// Lấy ra tất cả id của window/tab đang có
@@ -156,13 +151,13 @@ public class Topic_12_Frame_Iframe_Window {
 		}
 
 		driver.switchTo().window(parentID);
-		if(driver.getWindowHandles().size() == 1)
+		if (driver.getWindowHandles().size() == 1)
 			return true;
 		else
 			return false;
 	}
-	
-	//Click javascript
+
+	// Click javascript
 	public void clickJvscript(String clicklocator) {
 		jvExecutor.executeScript("arguments[0].click();", driver.findElement(By.xpath(clicklocator)));
 	}

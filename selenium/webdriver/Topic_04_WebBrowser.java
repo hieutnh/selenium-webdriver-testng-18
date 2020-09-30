@@ -28,7 +28,7 @@ public class Topic_04_WebBrowser {
 		Assert.assertEquals(driver.getCurrentUrl(), "http://live.demoguru99.com/index.php/customer/account/create/");
 
 	}
-	
+
 	@Test
 	public void TC_02_Verify_Title() {
 		driver.get("http://live.demoguru99.com/");
@@ -37,18 +37,19 @@ public class Topic_04_WebBrowser {
 		driver.findElement(By.xpath("//a[@class='button']")).click();
 		Assert.assertEquals(driver.getTitle(), "Create New Customer Account");
 	}
-	
+
 	@Test
 	public void TC_03_Navigate_Funtion() {
 		driver.get("http://live.demoguru99.com/");
 		driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
 		driver.findElement(By.xpath("//a[@class='button']")).click();
-		Assert.assertEquals(driver.getCurrentUrl (), "http://live.demoguru99.com/index.php/customer/account/create/");
+		Assert.assertEquals(driver.getCurrentUrl(), "http://live.demoguru99.com/index.php/customer/account/create/");
 		driver.navigate().back();
-		Assert.assertEquals(driver.getCurrentUrl (), "http://live.demoguru99.com/index.php/customer/account/login/");
+		Assert.assertEquals(driver.getCurrentUrl(), "http://live.demoguru99.com/index.php/customer/account/login/");
 		driver.navigate().forward();
 		Assert.assertEquals(driver.getTitle(), "Create New Customer Account");
 	}
+
 	@Test
 	public void TC_04_Get_Page_Source() {
 		driver.get("http://live.demoguru99.com/");
@@ -58,11 +59,9 @@ public class Topic_04_WebBrowser {
 		Assert.assertTrue(driver.getPageSource().contains("Create an Account"));
 
 	}
-	
-	
-	
+
 	@AfterClass
-		public void afterClass() {
-			driver.quit();
+	public void afterClass() {
+		driver.quit();
 	}
 }

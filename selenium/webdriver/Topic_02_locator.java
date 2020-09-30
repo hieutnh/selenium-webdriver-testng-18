@@ -24,26 +24,25 @@ public class Topic_02_locator {
 	public void TC_locator() throws InterruptedException {
 		// Mở ra 1 trang web
 		driver.get("http://live.demoguru99.com/index.php/");
-		//id
+		// id
 		driver.findElement(By.id("search")).sendKeys("LG");
 		Thread.sleep(3000);
-		
+
 		driver.findElement(By.className("search-button")).click();
-		
-		//Class
+
+		// Class
 		driver.findElement(By.className("btn-cart")).click();
 		Thread.sleep(3000);
-		
-		//link text
+
+		// link text
 		driver.findElement(By.linkText("PRIVACY POLICY")).click();
 		Thread.sleep(3000);
-		
-		//link parktial link text
+
+		// link parktial link text
 		driver.findElement(By.partialLinkText("ADVANCED")).click();
 		Thread.sleep(3000);
-		
+
 	}
-	
 
 	@AfterClass
 	public void afterClass() {
