@@ -1,23 +1,24 @@
 package webdriver;
 
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeClass;
-
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class Topic_03_Xpath {
 	WebDriver driver;
+	String rootfolder = System.getProperty("user.dir");
 
 	@BeforeClass
 	public void beforeClass() {
-		driver = new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", rootfolder + "\\Driver_Browser\\chromedriver.exe");
+		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}
@@ -36,7 +37,6 @@ public class Topic_03_Xpath {
 
 	}
 
-	@Test
 	public void TC_02_LoginWithInvalidEmail() {
 		driver.get("http://live.demoguru99.com/index.php/customer/account/login/");
 		driver.findElement(By.xpath("//div[@class='footer-container']//a[@title='My Account']")).click();
@@ -48,7 +48,6 @@ public class Topic_03_Xpath {
 
 	}
 
-	@Test
 	public void TC_03_LoginWithInvalidPasswor() {
 		driver.get("http://live.demoguru99.com/index.php/customer/account/login/");
 		driver.findElement(By.xpath("//div[@class='footer-container']//a[@title='My Account']")).click();
@@ -59,7 +58,6 @@ public class Topic_03_Xpath {
 		Assert.assertEquals(passworderrormessage, "Please enter 6 or more characters without leading or trailing spaces.");
 	}
 
-	@Test
 	public void TC_04_LoginWithIcorrectPassword() {
 		driver.get("http://live.demoguru99.com/index.php/customer/account/login/");
 		driver.findElement(By.xpath("//div[@class='footer-container']//a[@title='My Account']")).click();
@@ -71,7 +69,6 @@ public class Topic_03_Xpath {
 
 	}
 
-	@Test
 	public void TC_05_LoginWithValidEmailPassword() {
 		driver.get("http://live.demoguru99.com/index.php/customer/account/login/");
 		driver.findElement(By.xpath("//div[@class='footer-container']//a[@title='My Account']")).click();
@@ -114,7 +111,7 @@ public class Topic_03_Xpath {
 		Assert.assertEquals(MyDashboard2, "MY DASHBOARD");
 
 		String HelloAuto2 = driver.findElement(By.xpath("//p[@class='hello']/strong")).getText();
-		Assert.assertEquals(HelloAuto2, "Hello, Tran Hieu!");
+		Assert.assertEquals(HelloAuto2, "Hello, " + firstname + " " + lastname + "!");
 
 		String imformationemail = driver.findElement(By.xpath("//div[@class='col-1']//div[@class='box-content']//p")).getText();
 		Assert.assertTrue(imformationemail.contains(firstname + " " + lastname));
