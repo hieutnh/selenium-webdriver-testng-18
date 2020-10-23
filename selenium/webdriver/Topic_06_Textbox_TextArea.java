@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -31,8 +32,8 @@ public class Topic_06_Textbox_TextArea {
 
 	@BeforeClass
 	public void beforeClass() {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Administrator\\git\\selenium-webdriver-testng-18\\DriverChrome\\chromedriver.exe");
-		driver = new ChromeDriver();
+		System.setProperty("webdriver.gecko.driver", ".\\Driver_Browser\\geckodriver.exe");
+		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 

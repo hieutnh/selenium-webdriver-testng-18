@@ -8,7 +8,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -20,21 +20,22 @@ public class Topic_07_Dropdown_Custom1 {
 	WebDriver driver;
 	JavascriptExecutor jsExecutor;
 	WebDriverWait explicitWait;
+	String rootFolder = System.getProperty("user.dir");
 
 	@BeforeClass
 	public void beforeClass() {
-		System.setProperty("webdriver.chrome.driver", ".\\Driver\\chromedriver.exe");
-		driver = new ChromeDriver();
+		driver = new FirefoxDriver();
+
 		explicitWait = new WebDriverWait(driver, 30);
 		jsExecutor = (JavascriptExecutor) driver;
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
+		driver.get("http://jqueryui.com/resources/demos/selectmenu/default.html");
 
 	}
 
-	@Test
 	public void TC_01_JQUERY() {
-		driver.get("http://jqueryui.com/resources/demos/selectmenu/default.html");
+
 		selectItemInDropDown("//span[@id='number-button']", "//li[@class='ui-menu-item']/div", "5");
 		Assert.assertTrue(driver.findElement(By.xpath("//span[contains(text(),'5')]")).isDisplayed());
 		selectItemInDropDown("//span[@id='number-button']", "//li[@class='ui-menu-item']/div", "10");
@@ -46,7 +47,6 @@ public class Topic_07_Dropdown_Custom1 {
 
 	}
 
-	@Test
 	public void TC_02_Angular() {
 		driver.get("https://bom.to/GjUg3AR");
 		selectItemInDropDown("//ejs-dropdownlist[@id='games']//span[contains(@class, 'e-input-group')]", "//ul[@id='games_options']/li", "American Football");
@@ -55,7 +55,6 @@ public class Topic_07_Dropdown_Custom1 {
 		Assert.assertEquals(getHidenText("select[id='games_hidden'] option"), "Golf");
 	}
 
-	@Test
 	public void TC_03_React() {
 		driver.get("https://react.semantic-ui.com/maximize/dropdown-example-selection/");
 		selectItemInDropDown("//div[@role='listbox']", "//div[@role='option']", "Jenny Hess");
@@ -65,7 +64,6 @@ public class Topic_07_Dropdown_Custom1 {
 
 	}
 
-	@Test
 	public void TC_04_vueJS() {
 		driver.get("https://mikerodham.github.io/vue-dropdowns/");
 		selectItemInDropDown("//li[@class='dropdown-toggle']", "//ul[@class='dropdown-menu']/li", "First Option");
@@ -74,7 +72,6 @@ public class Topic_07_Dropdown_Custom1 {
 		Assert.assertTrue(driver.findElement(By.xpath("//li[@class='dropdown-toggle' and contains(text(),'Second Option')]")).isDisplayed());
 	}
 
-	@Test
 	public void TC_05_editAble() {
 		driver.get("http://indrimuska.github.io/jquery-editable-select/");
 		sendkeydropdown("//div[@id='default-place']//input", "Audi");
@@ -129,7 +126,7 @@ public class Topic_07_Dropdown_Custom1 {
 			// Verify với text mình cần click
 
 			if (item.getText().equals(expectedItem)) {
-				// Scroll truowcs khi click
+				// Scroll trước khi click
 				jsExecutor.executeScript("arguments[0].scrollIntoView(true);", item);
 				item.click();
 				sleepInSecond(1);

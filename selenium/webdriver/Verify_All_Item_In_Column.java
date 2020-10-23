@@ -37,16 +37,19 @@ public class Verify_All_Item_In_Column {
 		List<WebElement> numerRows = driver.findElements(By.xpath("//table[@id='customerGrid_table']//tbody//tr"));
 		int rowSize = numerRows.size();
 		System.out.println("row is:	" + rowSize);
-		List<WebElement> numberColumn = driver
-				.findElements(By.xpath("//table[@id='customerGrid_table']//tbody//tr[1]//td"));
+		List<WebElement> numberColumn = driver.findElements(By.xpath("//table[@id='customerGrid_table']//tbody//tr[1]//td"));
 		int columnSize = numberColumn.size();
 		System.out.println("column is: " + columnSize);
 		for (int i = 1; i <= rowSize; i++) {
 //			for (int j = 1; j <= columnSize; j++) {
+			for (WebElement item : numberColumn) {
+				item.getText().equals("70000");
+				Assert.assertEquals(item.getText(), "70000");
+			}
 
-				WebElement allitem = driver.findElement(By.xpath("//table[@id='customerGrid_table']//tbody//tr[" + i + "]//td[7]"));
-				Assert.assertEquals(allitem.getText(), "70000");
-				System.out.println("All column have text expected:  " + allitem.getSize());
+			WebElement allitem = driver.findElement(By.xpath("//table[@id='customerGrid_table']//tbody//tr[" + i + "]//td[7]"));
+			Assert.assertEquals(allitem.getText(), "70000");
+			System.out.println("All column have text expected:  " + allitem.getSize());
 //			}
 		}
 	}
