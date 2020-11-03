@@ -18,7 +18,7 @@ public class Topic_08_Button_Radio_Checkbox {
 
 	@BeforeClass
 	public void beforeClass() {
-		System.setProperty("webdriver.chrome.driver", ".\\Driver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", ".\\Driver_Browser\\chromedriver.exe");
 		driver = new ChromeDriver();
 		// driver = new FirefoxDriver();
 		jsExecutor = (JavascriptExecutor) driver;
@@ -27,6 +27,7 @@ public class Topic_08_Button_Radio_Checkbox {
 
 	}
 
+	@Test
 	public void TC_01_Button() {
 		driver.get("https://www.fahasa.com/customer/account/");
 		WebElement loginbutton = driver.findElement(By.xpath("//button[@class='fhs-btn-login']"));
@@ -87,7 +88,7 @@ public class Topic_08_Button_Radio_Checkbox {
 
 	}
 
-	@Test
+
 	public void TC_03_Checkbox_Custom() {
 		driver.get("https://material.angular.io/components/radio/examples");
 		WebElement clickCheckboxCustom = driver.findElement(By.xpath("//input[@id='mat-radio-4-input']"));
