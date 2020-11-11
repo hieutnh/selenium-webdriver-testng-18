@@ -2,11 +2,7 @@ package webdriver;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.testng.annotations.Test;
-
-import org.testng.annotations.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class Verify_All_Item_In_Column {
 
@@ -27,7 +24,14 @@ public class Verify_All_Item_In_Column {
 	@BeforeClass
 	public void beforeClass() {
 		System.setProperty("webdriver.chrome.driver", ".\\Driver_Browser\\chromedriver.exe");
-		driver = new ChromeDriver();
+		
+		HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+		chromePrefs.put("profile.default_content_settings.popups", 0);
+		chromePrefs.put("download.default_directory", ROOT_FOLDER + "\\downLoad");
+		ChromeOptions options = new ChromeOptions();
+		options.setExperimentalOption("prefs", chromePrefs);
+		driver = new ChromeDriver(options);
+		
 		explicitWait = new WebDriverWait(driver, 60);
 
 		driver.manage().window().maximize();
@@ -38,12 +42,12 @@ public class Verify_All_Item_In_Column {
 		driver.findElement(By.xpath("//input[@id='username']")).sendKeys("user01");
 		driver.findElement(By.xpath("//input[@id='login']")).sendKeys("guru99com");
 		driver.findElement(By.xpath("//input[@value='Login']")).click();
-		Thread.sleep(3000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//span[contains(text(),'close')]")).click();
-		Thread.sleep(3000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//input[@id='customerGrid_filter_billing_postcode']")).sendKeys("70000");
 		driver.findElement(By.xpath("//span[contains(text(),'Search')]")).click();
-		Thread.sleep(3000);
+		Thread.sleep(1500);
 		List<WebElement> numerRows = driver.findElements(By.xpath("//table[@id='customerGrid_table']//tbody//tr"));
 		int rowSize = numerRows.size();
 		System.out.println("row is:	" + rowSize);
@@ -68,9 +72,9 @@ public class Verify_All_Item_In_Column {
 		driver.findElement(By.xpath("//input[@id='username']")).sendKeys("user01");
 		driver.findElement(By.xpath("//input[@id='login']")).sendKeys("guru99com");
 		driver.findElement(By.xpath("//input[@value='Login']")).click();
-		Thread.sleep(3000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//span[contains(text(),'close')]")).click();
-		Thread.sleep(3000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//input[@id='customerGrid_filter_billing_postcode']")).sendKeys("70000");
 		driver.findElement(By.xpath("//span[contains(text(),'Search')]")).click();
 		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//span[contains(text(),'Name')]//ancestor::thead//following-sibling::tbody//td[contains(text(),'Long Pham')]//preceding-sibling::td//input[@type='checkbox']")));
@@ -82,9 +86,9 @@ public class Verify_All_Item_In_Column {
 				throw new RuntimeException("Please wait to element visible");
 			}
 		}
-		Thread.sleep(3000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//span[contains(text(),'Export')]")).click();
-		Thread.sleep(10000);
+		Thread.sleep(3000);
 	}
 
 	@AfterClass
