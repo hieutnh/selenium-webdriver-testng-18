@@ -8,7 +8,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -18,20 +21,17 @@ import org.testng.annotations.Test;
 public class Verify_All_Item_In_Column {
 
 	WebDriver driver;
+	Select select;
 	WebDriverWait explicitWait;
 	String ROOT_FOLDER = System.getProperty("user.dir");
 
 	@BeforeClass
 	public void beforeClass() {
 		System.setProperty("webdriver.chrome.driver", ".\\Driver_Browser\\chromedriver.exe");
-		
-		HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
-		chromePrefs.put("profile.default_content_settings.popups", 0);
-		chromePrefs.put("download.default_directory", ROOT_FOLDER + "\\downLoad");
+
 		ChromeOptions options = new ChromeOptions();
-		options.setExperimentalOption("prefs", chromePrefs);
 		driver = new ChromeDriver(options);
-		
+
 		explicitWait = new WebDriverWait(driver, 60);
 
 		driver.manage().window().maximize();
@@ -90,6 +90,7 @@ public class Verify_All_Item_In_Column {
 		driver.findElement(By.xpath("//span[contains(text(),'Export')]")).click();
 		Thread.sleep(3000);
 	}
+
 
 	@AfterClass
 	public void afterClass() {
