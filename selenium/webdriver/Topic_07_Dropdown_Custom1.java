@@ -24,6 +24,7 @@ public class Topic_07_Dropdown_Custom1 {
 
 	@BeforeClass
 	public void beforeClass() {
+		System.setProperty("webdriver.gecko.driver", ".\\Driver_Browser\\chromedriver.exe");
 		driver = new FirefoxDriver();
 
 		explicitWait = new WebDriverWait(driver, 30);
