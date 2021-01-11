@@ -37,6 +37,7 @@ public class Verify_All_Item_In_Column {
 		driver.manage().window().maximize();
 	}
 
+	@Test
 	public void TC_01_Alert_Accept() throws InterruptedException {
 		driver.get("http://live.demoguru99.com/index.php/backendlogin");
 		driver.findElement(By.xpath("//input[@id='username']")).sendKeys("user01");
@@ -51,10 +52,10 @@ public class Verify_All_Item_In_Column {
 		List<WebElement> numerRows = driver.findElements(By.xpath("//table[@id='customerGrid_table']//tbody//tr"));
 		int rowSize = numerRows.size();
 		System.out.println("row is:	" + rowSize);
-		List<WebElement> numberColumn = driver.findElements(By.xpath("//table[@id='customerGrid_table']//tbody//tr//td[7]"));
-		int columnSize = numberColumn.size();
+		List<WebElement> numbercellincolumnzip = driver.findElements(By.xpath("//table[@id='customerGrid_table']//tbody//tr//td[7]"));
+		int columnSize = numbercellincolumnzip.size();
 		System.out.println("column is: " + columnSize);
-		for (WebElement item : numberColumn) {
+		for (WebElement item : numbercellincolumnzip) {
 			if (item.getText().equals("70000")) {
 				Assert.assertEquals(item.getText(), "70000");
 			} else {
@@ -66,7 +67,7 @@ public class Verify_All_Item_In_Column {
 		}
 	}
 
-	@Test
+	
 	public void TC_02_Alert_Accept() throws InterruptedException {
 		driver.get("http://live.demoguru99.com/index.php/backendlogin");
 		driver.findElement(By.xpath("//input[@id='username']")).sendKeys("user01");
