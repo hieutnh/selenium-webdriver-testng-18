@@ -20,20 +20,27 @@ public class Topic_15_Wait_Part_II_Implicit_Wait_Static_Wait {
 
 	@BeforeClass
 	public void beforeClass() {
-		System.setProperty("webdriver.chrome.driver", ".\\Driver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", ".\\Driver_Browser\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 	}
 
+	@Test
 	public void TC_01_ImplicitWait() throws InterruptedException {
 		driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
 		driver.findElement(By.xpath("//button[contains(text(),'Start')]")).click();
+		long start = System.currentTimeMillis();
+		for (long i=0; i<100000000; i++); 
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		
 		// implicit Wait chờ cho đến khi tìm được element có text = Hello World!
 		Assert.assertTrue(driver.findElement(By.xpath("//h4[contains(text(),'Hello World!')]")).isDisplayed());
+		long end = System.currentTimeMillis();
+		long timeStartAndEnd = (end - start);
+		 System.out.println("Time Millis: " + (end - start));
 	}
 
-	@Test
+	
 	public void TC_02_StaticWait() throws InterruptedException {
 		driver.get("https://juliemr.github.io/protractor-demo/");
 		sleepInSecond(2);

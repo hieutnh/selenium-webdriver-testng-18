@@ -21,12 +21,13 @@ public class Topic_15_Wait_Part_IV_Mixing_Fluent_Wait {
 
 	@BeforeClass
 	public void beforeClass() {
-		System.setProperty("webdriver.chrome.driver", ".\\Driver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", ".\\Driver_Browser\\chromedriver.exe");
 
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 	}
 
+	@Test
 	public void TC_01_Count_Down() {
 		driver.get("https://automationfc.github.io/fluent-wait/");
 		WebElement countdown = driver.findElement(By.xpath("//div[@id='javascript_countdown_time']"));
@@ -41,7 +42,7 @@ public class Topic_15_Wait_Part_IV_Mixing_Fluent_Wait {
 				.until(new Function<WebElement, Boolean>() {
 					public Boolean apply(WebElement countdown) {
 						// kiểm tra điều kiện countdown = 00
-						boolean flag = countdown.getText().endsWith("00");
+						boolean flag = countdown.getText().contains("01:00:59");
 						System.out.println("Time = " + countdown.getText());
 						// trả lại giá trị cho function được apply
 						return flag;
@@ -49,7 +50,7 @@ public class Topic_15_Wait_Part_IV_Mixing_Fluent_Wait {
 				});
 	}
 
-	@Test
+	
 	public void TC_02_Loading() {
 		driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
 		driver.findElement(By.xpath("//button[contains(text(),'Start')]")).click();
