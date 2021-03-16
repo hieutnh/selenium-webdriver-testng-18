@@ -8,6 +8,7 @@ public abstract class Create_file {
 	public static void main(String[] args) {
 		String sourceFolder = System.getProperty("user.dir");
 		String fileName = "createFile.txt";
+		// tạo đường dẫn bằng File.separator
 		File file = new File(sourceFolder +File.separator + fileName);
 
 		try {
